@@ -26,7 +26,7 @@ const MyCalendar = () => {
   const selectionBg=useRef(null);
 
   useEffect(()=>{
-    fetch('http://localhost:5000')
+    fetch('https://event-calendar-g7s5.onrender.com')
     .then(response=>response.json())
     .then(eventsJson=>{
        
@@ -61,7 +61,7 @@ const MyCalendar = () => {
   },[])
 
   const getEventDetails = (eventClicked) => {
-    fetch('http://localhost:5000/'+eventClicked.id)
+    fetch('https://event-calendar-g7s5.onrender.com/'+eventClicked.id)
     .then(response=>response.json())
     .then(eventDet=>{
       setEventDetails([eventDet])
