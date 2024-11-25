@@ -1,0 +1,88 @@
+.rbc-event{
+    background: none;
+    color:#444
+}
+.event-card{
+    background: #fff;
+    height: 65px;
+    width: 190px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    box-shadow: -1px 0 12px -1px rgba(0, 0, 0, .34);
+    overflow: hidden;
+}
+.ant-badge sup{
+    background: #ffce47 !important;
+    color: #000 !important;
+}
+.event-details{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
+    padding: 5px 0;
+    font-size: 12px;
+}
+.rbc-event-content,.rbc-day-slot .rbc-event, .rbc-day-slot .rbc-background-event{
+    overflow: visible !important;
+    z-index: 9;
+}
+.event-card .border-left{
+    width: 15px;
+    height: 100%;
+    background: #0a66c2;
+    margin-right: 5px;
+    overflow: hidden;
+    border-radius: 5px 0 0 5px;
+}
+.event-list-container{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.rbc-month-row{
+    overflow: visible;
+}
+
+.event-detail-modal .ant-modal-content {
+    height: 400px !important;
+    border: 1px solid #ccc;
+    padding: 15px
+}
+.ant-modal-wrap{
+    z-index: 1040 !important;
+}
+.rbc-event.rbc-selected .rbc-event-label, .rbc-day-slot .rbc-selected.rbc-background-event .rbc-label-color {
+    color: #fff;
+}
+.rbc-event.rbc-selected .event-card , 
+.selected-event-custom{
+    background: #265985 !important;
+    color: #fff;
+}
+.rbc-event.rbc-selected,.rbc-event.rbc-selected .event-card, .rbc-day-slot .rbc-selected.rbc-background-event{
+    color: #fff;
+}
+.ant-modal-wrap {
+    background: rgba(255, 255, 255, 0.7);
+}
+.detail-card div{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    margin: 3px 0;
+}
+.detail-card .card-title{
+    font-weight: 600;
+    font-size: 16px;
+}
+.detail-card {
+    margin-bottom: 10px;
+}
+.ant-modal-body {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px !important;
+}
