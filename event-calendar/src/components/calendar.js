@@ -6,9 +6,12 @@ import "../calendar.css"
 
 import EventDetailCard from './eventDetail';
 
+import { LoadingOutlined } from '@ant-design/icons';
+import {  Spin } from 'antd';
 
 
 const localizer = momentLocalizer(moment);
+
 
 
 const MyCalendar = () => {
@@ -23,7 +26,6 @@ const MyCalendar = () => {
 
   const [lastEventEnd,setLastEventEnd]=useState(null);
 
-  const selectionBg=useRef(null);
 
   useEffect(()=>{
     fetch('https://event-calendar-g7s5.onrender.com')
@@ -93,7 +95,7 @@ const MyCalendar = () => {
 
     const renderEventCardForPopup=useCallback((event) => {
       return (
-      <div ref={selectionBg} className='event-card' onClick={()=>{handlePopupEventClick(event)}}>
+      <div  className='event-card' onClick={()=>{handlePopupEventClick(event)}}>
           <div className='border-left'></div>
           <div className='event-details'>
               <div>
@@ -113,15 +115,13 @@ const MyCalendar = () => {
 
 
 
- const handleVisibleChange = useCallback((newVisible) => {
+ const handleVisibleChange = (newVisible) => {
   if(isModalOpen){
     setVisible(true);
   }else{
     setVisible(newVisible);
   }
-  });
-
-
+  };
 
 
 
@@ -139,8 +139,8 @@ function Event({ event }) {
             </div>
         }
         trigger="click"
-        visible={visible}
-        onVisibleChange={handleVisibleChange} 
+        open={visible}
+        onOpenChange={handleVisibleChange} 
       >
         <Badge count={event.group.length}>
             {renderEventCardForPopup(event)}
@@ -160,21 +160,22 @@ function Event({ event }) {
     setVisible(true);
     if(!event.group){
       setIsModalOpen(true)
-     getEventDetails(event)
-      selectionBg.current.classList.add("selected-event-custom"); 
+      setEventDetails([])
+     getEventDetails(event) 
     }else{
       setEventSelected(event.group);
+      setVisible(true)
     }
   }
   const handleEventClick=(event)=>{
+       setEventDetails([])
       getEventDetails(event)
-      setIsModalOpen(true);
-      selectionBg.current.classList.add("selected-event-custom");   
+      setIsModalOpen(true);  
   }
 
-  const closeModal = useCallback(() => {
+  const closeModal = () => {
     setIsModalOpen(false);
-  });
+  };
 
 
 
@@ -198,13 +199,15 @@ function Event({ event }) {
         })}
       />
 
-     
+
       <Modal className='event-detail-modal' open={isModalOpen} footer={null}  maskClosable={false} onCancel={closeModal}>
         <div className='event-list-container'>
-          {eventDetails.length && <EventDetailCard eventDetails={eventDetails[0]}/>} 
+         
+          {eventDetails.length ? <EventDetailCard eventDetails={eventDetails[0]}/>:  <Spin indicator={<LoadingOutlined spin />} size="small" />} 
 
         </div>
-      </Modal>
+      </Modal> 
+  
     </div>
   );
 };

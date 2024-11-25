@@ -8,7 +8,7 @@ const EventDetailCard=({eventDetails})=>{
     <div className='detail-card summary'>
     <div className='card-title'>Event Summary</div>
     <div>
-      <span>Id</span>:<span>{eventDetails.id}</span>
+      <span>Id</span>:<span>{eventDetails.id || ``}</span>
     </div>
     <div>
       <span>Summary</span>  : <span>{eventDetails.summary}</span>
